@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var countdownTimeInt = 0;
+        const interval = setInterval(function () {
+            var d = new Date();
+            var n = d.getTime();
+
+            
+
+            console.log(n - countdownTimeInt)
+        }, 100);
+
+        function onInputThing() {
+            var input = document.getElementById("myText").value
+
+            var countdownTime = new Date();
+
+            countdownTime.setHours(input.substr(0, 2))
+
+            countdownTimeInt = countdownTime.getTime()
+        }
+    </script>
+</head>
+
+<body>  
+    <input id="myText" type="text" oninput="onInputThing()">
+</body>
+
+</html>
