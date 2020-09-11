@@ -6,30 +6,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
+        var input = 0;
         var countdownTimeInt = 0;
-        const interval = setInterval(function () {
+
+        setTimeout(function(){ input = document.getElementById("myText").value; }, 100);
+        
+        
+
+        function update() {
             var d = new Date();
             var n = d.getTime();
 
             
 
-            console.log(n - countdownTimeInt)
-        }, 100);
+            console.log((n - countdownTimeInt) + 0000)
+
+            if(input.toString().length == 5) {
+                document.getElementById("textBox").innerHTML = -1 * ((n - countdownTimeInt) / 1000)
+            } else {
+                document.getElementById("textBox").innerHTML = "Please input time"
+            }
+
+            
+
+            window.requestAnimationFrame(update)
+        }
+
+        window.requestAnimationFrame(update)
 
         function onInputThing() {
-            var input = document.getElementById("myText").value
+            input = document.getElementById("myText").value
 
             var countdownTime = new Date();
 
-            countdownTime.setHours(input.substr(0, 2))
+            countdownTime.setHours(Number(input.toString().substr(0, 2)))
+
+            countdownTime.setMinutes(Number(input.toString().substr(input.toString().length - 2)))
+
+            countdownTime.setSeconds(0)
 
             countdownTimeInt = countdownTime.getTime()
         }
     </script>
+    <style>
+        p {
+            font-size: 100px;
+            text-align: left;
+            font-family: sans-serif;
+        }
+    </style>
 </head>
 
 <body>  
     <input id="myText" type="text" oninput="onInputThing()">
+    <p id="textBox"></p>
 </body>
 
 </html>
