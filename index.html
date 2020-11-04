@@ -22,7 +22,9 @@
             console.log((n - countdownTimeInt) + 0000)
 
             if(input.toString().length == 5) {
-                document.getElementById("textBox").innerHTML = -1 * ((n - countdownTimeInt) / 1000)
+                document.getElementById("textBox").innerHTML = (-1 * ((n - countdownTimeInt) / 1000)).toFixed(3) + " in seconds"
+                document.getElementById("minuteBox").innerHTML = (-1 * ((n - countdownTimeInt) / 60000)).toFixed(3) + " in minutes"
+                
             } else {
                 document.getElementById("textBox").innerHTML = "Please input time"
             }
@@ -51,10 +53,18 @@
         }
     </script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
         p {
             font-size: 100px;
             text-align: left;
-            font-family: sans-serif;
+            font-family: 'Roboto Mono', monospace;
+            height: 50px;
+            white-space: nowrap;
+        }
+
+        #minuteBox {
+            font-size: 50px;
+
         }
     </style>
 </head>
@@ -62,6 +72,7 @@
 <body>  
     <input id="myText" type="text" oninput="onInputThing()">
     <p id="textBox"></p>
+    <p id="minuteBox"></p>
 </body>
 
 </html>
