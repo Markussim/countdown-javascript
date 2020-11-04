@@ -1,79 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script>
-        var input = 0;
-        var countdownTimeInt = 0;
+      var input = 0;
+      var countdownTimeInt = 0;
 
-        setTimeout(function(){ input = document.getElementById("myText").value; }, 100);
-        
-        
+      setTimeout(function () {
+        input = document.getElementById("myText").value;
+      }, 100);
 
-        function update() {
-            var d = new Date();
-            var n = d.getTime();
+      function update() {
+        var d = new Date();
+        var n = d.getTime();
 
-            
+        console.log(n - countdownTimeInt + 0000);
 
-            console.log((n - countdownTimeInt) + 0000)
-
-            if(input.toString().length == 5) {
-                document.getElementById("textBox").innerHTML = (-1 * ((n - countdownTimeInt) / 1000)).toFixed(3) + " in seconds"
-                document.getElementById("minuteBox").innerHTML = (-1 * ((n - countdownTimeInt) / 60000)).toFixed(3) + " in minutes"
-                
-            } else {
-                document.getElementById("textBox").innerHTML = "Please input time"
-                document.getElementById("minuteBox").innerHTML = ""
-            }
-
-            
-
-            window.requestAnimationFrame(update)
+        if (input.toString().length == 5) {
+          document.getElementById("textBox").innerHTML =
+            (-1 * ((n - countdownTimeInt) / 1000)).toFixed(3) + " in seconds";
+          document.getElementById("minuteBox").innerHTML =
+            (-1 * ((n - countdownTimeInt) / 60000)).toFixed(3) + " in minutes";
+        } else {
+          document.getElementById("textBox").innerHTML = "Please input time";
+          document.getElementById("minuteBox").innerHTML = "";
         }
 
-        window.requestAnimationFrame(update)
+        window.requestAnimationFrame(update);
+      }
 
-        function onInputThing() {
-            input = document.getElementById("myText").value
+      window.requestAnimationFrame(update);
 
-            var countdownTime = new Date();
+      function onInputThing() {
+        input = document.getElementById("myText").value;
 
-            countdownTime.setHours(Number(input.toString().substr(0, 2)))
+        var countdownTime = new Date();
 
-            countdownTime.setMinutes(Number(input.toString().substr(input.toString().length - 2)))
+        countdownTime.setHours(Number(input.toString().substr(0, 2)));
 
-            countdownTime.setSeconds(0)
+        countdownTime.setMinutes(
+          Number(input.toString().substr(input.toString().length - 2))
+        );
 
-            countdownTime.setMilliseconds(0)
+        countdownTime.setSeconds(0);
 
-            countdownTimeInt = countdownTime.getTime()
-        }
+        countdownTime.setMilliseconds(0);
+
+        countdownTimeInt = countdownTime.getTime();
+      }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+      @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
+      p {
+        font-size: 100px;
+        text-align: left;
+        font-family: "Roboto Mono", monospace;
+        height: 50px;
+        white-space: nowrap;
+      }
+
+      #minuteBox {
+        font-size: 50px;
+      }
+      @media (prefers-color-scheme: light) {
+        body {
+          background-color: white;
+        }
         p {
-            font-size: 100px;
-            text-align: left;
-            font-family: 'Roboto Mono', monospace;
-            height: 50px;
-            white-space: nowrap;
+          color: black;
         }
-
-        #minuteBox {
-            font-size: 50px;
-
+      }
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: black;
         }
+        p {
+          color: white;
+        }
+      }
     </style>
-</head>
+  </head>
 
-<body>  
-    <input id="myText" type="text" oninput="onInputThing()">
+  <body>
+    <input id="myText" type="text" oninput="onInputThing()" />
     <p id="textBox"></p>
     <p id="minuteBox"></p>
-</body>
-
+  </body>
 </html>
