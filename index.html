@@ -15,10 +15,21 @@
       function update() {
         var d = new Date();
         var n = d.getTime();
+        let inputUpdate = document.getElementById("myText").value;
 
         //console.log(n - countdownTimeInt + 0000);
 
-        if (input.toString().length == 5) {
+        if (
+          input.toString().length == 5 &&
+          !Number.isNaN(countdownTimeInt) &&
+          Number(inputUpdate.toString().substr(0, 2)) <= 23 &&
+          Number(
+            inputUpdate.toString().substr(inputUpdate.toString().length - 2)
+          ) <= 59
+        ) {
+          //console.log(countdownTime.getHours())
+          document.getElementById("myText").className = "transparent";
+          document.getElementById("myText").disabled = true;
           document.getElementById("textBox").innerHTML =
             (-1 * ((n - countdownTimeInt) / 1000)).toFixed(3) + " in seconds";
           document.getElementById("minuteBox").innerHTML =
@@ -29,6 +40,7 @@
         } else {
           document.getElementById("textBox").innerHTML = "Please input time";
           document.getElementById("minuteBox").innerHTML = "";
+          document.getElementById("hourBox").innerHTML = "";
         }
 
         window.requestAnimationFrame(update);
@@ -53,9 +65,9 @@
       }, 1000);
 
       function onInputThing() {
-        input = document.getElementById("myText").value;
+        let countdownTime = new Date();
 
-        var countdownTime = new Date();
+        input = document.getElementById("myText").value;
 
         countdownTime.setHours(Number(input.toString().substr(0, 2)));
 
@@ -78,11 +90,17 @@
         font-family: "Roboto Mono", monospace;
         height: 50px;
         white-space: nowrap;
+        opacity: 1;
       }
 
       .smallTime {
         font-size: 50px;
       }
+
+      .transparent {
+        animation: fadeInFromNone 2s forwards;
+      }
+
       @media (prefers-color-scheme: light) {
         body {
           background-color: white;
@@ -99,11 +117,33 @@
           color: white;
         }
       }
+
+      @keyframes fadeInFromNone {
+        0% {
+          visibility: visible;
+          opacity: 1;
+        }
+
+        99% {
+          visibility: visible;
+          opacity: 0;
+        }
+
+        100% {
+          visibility: hidden;
+          opacity: 0;
+        }
+      }
     </style>
   </head>
 
   <body>
-    <input id="myText" type="text" oninput="onInputThing()" />
+    <input
+      id="myText"
+      style="opacity: 1"
+      type="text"
+      oninput="onInputThing()"
+    />
     <p id="textBox"></p>
     <p class="smallTime" id="minuteBox"></p>
     <p class="smallTime" id="hourBox"></p>
