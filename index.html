@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Countdown</title>
     <script>
       var input = 0;
       var countdownTimeInt = 0;
@@ -16,7 +16,7 @@
         var d = new Date();
         var n = d.getTime();
 
-        console.log(n - countdownTimeInt + 0000);
+        //console.log(n - countdownTimeInt + 0000);
 
         if (input.toString().length == 5) {
           document.getElementById("textBox").innerHTML =
@@ -24,7 +24,8 @@
           document.getElementById("minuteBox").innerHTML =
             (-1 * ((n - countdownTimeInt) / 60000)).toFixed(3) + " in minutes";
           document.getElementById("hourBox").innerHTML =
-            (-1 * ((n - countdownTimeInt) / 60000 / 60)).toFixed(3) + " in hours";
+            (-1 * ((n - countdownTimeInt) / 60000 / 60)).toFixed(3) +
+            " in hours";
         } else {
           document.getElementById("textBox").innerHTML = "Please input time";
           document.getElementById("minuteBox").innerHTML = "";
@@ -34,6 +35,22 @@
       }
 
       window.requestAnimationFrame(update);
+
+      function updateTitle() {
+        var d = new Date();
+        var n = d.getTime();
+
+        if (-1 * ((n - countdownTimeInt) / 60000) > 0) {
+          document.title =
+            (-1 * ((n - countdownTimeInt) / 60000)).toFixed(1) + " minutes";
+        } else {
+          document.title = "Countdown";
+        }
+      }
+
+      setInterval(function () {
+        updateTitle();
+      }, 1000);
 
       function onInputThing() {
         input = document.getElementById("myText").value;
@@ -63,7 +80,7 @@
         white-space: nowrap;
       }
 
-      .smallTime  {
+      .smallTime {
         font-size: 50px;
       }
       @media (prefers-color-scheme: light) {
@@ -89,6 +106,6 @@
     <input id="myText" type="text" oninput="onInputThing()" />
     <p id="textBox"></p>
     <p class="smallTime" id="minuteBox"></p>
-    <P class="smallTime" id="hourBox"></P>
+    <p class="smallTime" id="hourBox"></p>
   </body>
 </html>
