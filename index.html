@@ -33,7 +33,7 @@
           if (-1 * ((n - countdownTimeInt) / 1000) < 0) {
             localStorage.removeItem("time");
             console.log("countdownTimeInt");
-            inputUpdate = "";
+            document.getElementById("myText").value = "";
             onInputThing();
           }
           myText.className = "transparent";
@@ -109,14 +109,14 @@
         }
       }
       function clearTime() {
-        myText.value = "";
+        document.getElementById("myText").value = "";
         onInputThing();
       }
 
       function onLoad() {
         if (localStorage.getItem("time")) {
           console.log(localStorage.getItem("time"));
-          myText.value = localStorage.getItem("time");
+          document.getElementById("myText").value = localStorage.getItem("time");
           onInputThing();
         }
       }
