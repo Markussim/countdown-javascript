@@ -15,9 +15,9 @@
       function update() {
         var d = new Date();
         var n = d.getTime();
-        let inputUpdate = myText.value;
+        let inputUpdate = document.getElementById("myText").value;
 
-        let myText = myText;
+        let myText = document.getElementById("myText");
         let textBox = document.getElementById("textBox");
         let minuteBox = document.getElementById("minuteBox");
         let hourBox = document.getElementById("hourBox");
@@ -76,14 +76,14 @@
       }, 1000);
 
       function onInputThing() {
-        let myText = myText;
+        let myText = document.getElementById("myText");
         let textBox = document.getElementById("textBox");
         let minuteBox = document.getElementById("minuteBox");
         let hourBox = document.getElementById("hourBox");
 
         let countdownTime = new Date();
 
-        input = myText.value;
+        input = document.getElementById("myText").value;
 
         countdownTime.setHours(Number(input.toString().substr(0, 2)));
 
