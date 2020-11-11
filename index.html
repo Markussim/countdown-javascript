@@ -87,6 +87,18 @@
 
         countdownTimeInt = countdownTime.getTime();
 
+        if (
+          document.getElementById("myText").value.length == 3 &&
+          !isNaN(document.getElementById("myText").value.substr(2, 2))
+        ) {
+          let cutValue = document.getElementById("myText").value.substr(0, 2);
+
+          document.getElementById("myText").value =
+            document.getElementById("myText").value.substring(0, 2) +
+            ":" +
+            document.getElementById("myText").value.substr(2, 2);
+        }
+
         if (document.getElementById("myText").value.length == 3) {
           document.getElementById("myText").value =
             document.getElementById("myText").value.substring(0, 2) + ":";
@@ -127,10 +139,10 @@
       }
 
       button {
-          border: solid black 2px;
-          background-color: white;
-          color: black;
-        }
+        border: solid black 2px;
+        background-color: white;
+        color: black;
+      }
 
       @media (prefers-color-scheme: light) {
         body {
