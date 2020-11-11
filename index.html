@@ -9,13 +9,18 @@
       var countdownTimeInt = 0;
 
       setTimeout(function () {
-        input = document.getElementById("myText").value;
+        input = myText.value;
       }, 100);
 
       function update() {
         var d = new Date();
         var n = d.getTime();
-        let inputUpdate = document.getElementById("myText").value;
+        let inputUpdate = myText.value;
+
+        let myText = myText;
+        let textBox = document.getElementById("textBox");
+        let minuteBox = document.getElementById("minuteBox");
+        let hourBox = document.getElementById("hourBox");
 
         if (
           input.toString().length == 5 &&
@@ -28,25 +33,25 @@
           if (-1 * ((n - countdownTimeInt) / 1000) < 0) {
             localStorage.removeItem("time");
             console.log("countdownTimeInt");
-            document.getElementById("myText").value = "";
+            inputUpdate = "";
             onInputThing();
           }
-          document.getElementById("myText").className = "transparent";
-          document.getElementById("myText").disabled = true;
-          localStorage.setItem("time", document.getElementById("myText").value);
-          document.getElementById("textBox").innerHTML =
+          myText.className = "transparent";
+          myText.disabled = true;
+          localStorage.setItem("time", inputUpdate);
+          textBox.innerHTML =
             (-1 * ((n - countdownTimeInt) / 1000)).toFixed(3) + " in seconds";
-          document.getElementById("minuteBox").innerHTML =
+          minuteBox.innerHTML =
             (-1 * ((n - countdownTimeInt) / 60000)).toFixed(3) + " in minutes";
           document.getElementById("hourBox").innerHTML =
             (-1 * ((n - countdownTimeInt) / 60000 / 60)).toFixed(3) +
             " in hours";
         } else {
-          document.getElementById("textBox").innerHTML = "Please input time";
-          document.getElementById("minuteBox").innerHTML = "";
-          document.getElementById("hourBox").innerHTML = "";
-          document.getElementById("myText").className = "";
-          document.getElementById("myText").disabled = false;
+          textBox.innerHTML = "Please input time";
+          minuteBox.innerHTML = "";
+          hourBox.innerHTML = "";
+          myText.className = "";
+          myText.disabled = false;
         }
 
         window.requestAnimationFrame(update);
@@ -71,9 +76,14 @@
       }, 1000);
 
       function onInputThing() {
+        let myText = myText;
+        let textBox = document.getElementById("textBox");
+        let minuteBox = document.getElementById("minuteBox");
+        let hourBox = document.getElementById("hourBox");
+
         let countdownTime = new Date();
 
-        input = document.getElementById("myText").value;
+        input = myText.value;
 
         countdownTime.setHours(Number(input.toString().substr(0, 2)));
 
@@ -87,34 +97,26 @@
 
         countdownTimeInt = countdownTime.getTime();
 
-        if (
-          document.getElementById("myText").value.length == 3 &&
-          !isNaN(document.getElementById("myText").value.substr(2, 2))
-        ) {
-          let cutValue = document.getElementById("myText").value.substr(0, 2);
+        if (myText.value.length == 3 && !isNaN(myText.value.substr(2, 2))) {
+          let cutValue = myText.value.substr(0, 2);
 
-          document.getElementById("myText").value =
-            document.getElementById("myText").value.substring(0, 2) +
-            ":" +
-            document.getElementById("myText").value.substr(2, 2);
+          myText.value =
+            myText.value.substring(0, 2) + ":" + myText.value.substr(2, 2);
         }
 
-        if (document.getElementById("myText").value.length == 3) {
-          document.getElementById("myText").value =
-            document.getElementById("myText").value.substring(0, 2) + ":";
+        if (myText.value.length == 3) {
+          myText.value = myText.value.substring(0, 2) + ":";
         }
       }
       function clearTime() {
-        document.getElementById("myText").value = "";
+        myText.value = "";
         onInputThing();
       }
 
       function onLoad() {
         if (localStorage.getItem("time")) {
           console.log(localStorage.getItem("time"));
-          document.getElementById("myText").value = localStorage.getItem(
-            "time"
-          );
+          myText.value = localStorage.getItem("time");
           onInputThing();
         }
       }
