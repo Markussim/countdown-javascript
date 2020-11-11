@@ -17,8 +17,6 @@
         var n = d.getTime();
         let inputUpdate = document.getElementById("myText").value;
 
-        //console.log(n - countdownTimeInt + 0000);
-
         if (
           input.toString().length == 5 &&
           !Number.isNaN(countdownTimeInt) &&
@@ -27,9 +25,15 @@
             inputUpdate.toString().substr(inputUpdate.toString().length - 2)
           ) <= 59
         ) {
-          //console.log(countdownTime.getHours())
+          if (-1 * ((n - countdownTimeInt) / 1000) < 0) {
+            localStorage.removeItem("time");
+            console.log("countdownTimeInt");
+            document.getElementById("myText").value = "";
+            onInputThing();
+          }
           document.getElementById("myText").className = "transparent";
           document.getElementById("myText").disabled = true;
+          localStorage.setItem("time", document.getElementById("myText").value);
           document.getElementById("textBox").innerHTML =
             (-1 * ((n - countdownTimeInt) / 1000)).toFixed(3) + " in seconds";
           document.getElementById("minuteBox").innerHTML =
@@ -41,6 +45,8 @@
           document.getElementById("textBox").innerHTML = "Please input time";
           document.getElementById("minuteBox").innerHTML = "";
           document.getElementById("hourBox").innerHTML = "";
+          document.getElementById("myText").className = "";
+          document.getElementById("myText").disabled = false;
         }
 
         window.requestAnimationFrame(update);
@@ -81,8 +87,23 @@
 
         countdownTimeInt = countdownTime.getTime();
 
-        if(document.getElementById("myText").value.length == 3) {
-          document.getElementById("myText").value = document.getElementById("myText").value.substring(0,2) + ":";
+        if (document.getElementById("myText").value.length == 3) {
+          document.getElementById("myText").value =
+            document.getElementById("myText").value.substring(0, 2) + ":";
+        }
+      }
+      function clearTime() {
+        document.getElementById("myText").value = "";
+        onInputThing();
+      }
+
+      function onLoad() {
+        if (localStorage.getItem("time")) {
+          console.log(localStorage.getItem("time"));
+          document.getElementById("myText").value = localStorage.getItem(
+            "time"
+          );
+          onInputThing();
         }
       }
     </script>
@@ -105,11 +126,22 @@
         animation: fadeInFromNone 2s forwards;
       }
 
+      button {
+          border: solid black 2px;
+          background-color: white;
+          color: black;
+        }
+
       @media (prefers-color-scheme: light) {
         body {
           background-color: white;
         }
         p {
+          color: black;
+        }
+        button {
+          border: solid black 2px;
+          background-color: white;
           color: black;
         }
       }
@@ -118,6 +150,11 @@
           background-color: black;
         }
         p {
+          color: white;
+        }
+        button {
+          border: solid white 2px;
+          background-color: black;
           color: white;
         }
       }
@@ -141,7 +178,8 @@
     </style>
   </head>
 
-  <body>
+  <body onload="onLoad()">
+    <button onclick="clearTime()">Change time</button>
     <input
       id="myText"
       style="opacity: 1"
