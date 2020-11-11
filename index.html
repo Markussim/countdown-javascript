@@ -80,6 +80,10 @@
         countdownTime.setMilliseconds(0);
 
         countdownTimeInt = countdownTime.getTime();
+
+        if(document.getElementById("myText").value.length == 3) {
+          document.getElementById("myText").value = document.getElementById("myText").value.substring(0,2) + ":";
+        }
       }
     </script>
     <style>
