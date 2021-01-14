@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
+p {
+  font-size: 100px;
+  text-align: left;
+  font-family: "Roboto Mono", monospace;
+  height: 50px;
+  white-space: nowrap;
+  opacity: 1;
+}
+
+.smallTime {
+  font-size: 50px;
+}
+
+.transparent {
+  animation: fadeInFromNone 2s forwards;
+}
+
+button {
+  border: solid black 2px;
+  background-color: white;
+  color: black;
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: white;
+  }
+  p {
+    color: black;
+  }
+  button {
+    border: solid black 2px;
+    background-color: white;
+    color: black;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: black;
+  }
+  p {
+    color: white;
+  }
+  button {
+    border: solid white 2px;
+    background-color: black;
+    color: white;
+  }
+}
+
+@keyframes fadeInFromNone {
+  0% {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  99% {
+    visibility: visible;
+    opacity: 0;
+  }
+
+  100% {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
