@@ -6,6 +6,7 @@ p {
   height: 50px;
   white-space: nowrap;
   opacity: 1;
+  user-select: none;
 }
 
 .smallTime {
