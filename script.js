@@ -41,7 +41,6 @@ function update() {
       (-1 * ((n - countdownTimeInt) / 60000 / 60)).toFixed(3) + " in hours";
 
     if (!titleUpdate) {
-      console.log("Run");
       updateTitle();
     }
   } else {
@@ -67,7 +66,6 @@ function updateTitle() {
       (-1 * ((n - countdownTimeInt) / 60000)).toFixed(1) + " minutes";
   } else {
     document.title = "Countdown";
-    console.log("False");
     titleUpdate = false;
   }
 
