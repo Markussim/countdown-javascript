@@ -19,9 +19,8 @@ function update() {
     input.toString().length == 5 &&
     !Number.isNaN(countdownTimeInt) &&
     Number(inputUpdate.toString().substr(0, 2)) <= 23 &&
-    Number(
-      inputUpdate.toString().substr(inputUpdate.toString().length - 2)
-    ) <= 59
+    Number(inputUpdate.toString().substr(inputUpdate.toString().length - 2)) <=
+      59
   ) {
     if (-1 * ((n - countdownTimeInt) / 1000) < 0) {
       localStorage.removeItem("time");
@@ -37,8 +36,7 @@ function update() {
     minuteBox.innerHTML =
       (-1 * ((n - countdownTimeInt) / 60000)).toFixed(3) + " in minutes";
     document.getElementById("hourBox").innerHTML =
-      (-1 * ((n - countdownTimeInt) / 60000 / 60)).toFixed(3) +
-      " in hours";
+      (-1 * ((n - countdownTimeInt) / 60000 / 60)).toFixed(3) + " in hours";
   } else {
     textBox.innerHTML = "Please input time";
     minuteBox.innerHTML = "";
