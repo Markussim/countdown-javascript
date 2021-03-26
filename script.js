@@ -60,11 +60,16 @@ function updateTitle() {
   } else {
     document.title = "Countdown";
   }
-}
 
-setInterval(function () {
-  updateTitle();
-}, 1000);
+  let timeLeftToUpdate =
+    -1 * ((n - countdownTimeInt) / 60000) * 60000 -
+    (-1 * ((n - countdownTimeInt) / 60000)).toFixed(1) * 60000;
+
+  if (timeLeftToUpdate < 0) timeLeftToUpdate = 6000 - timeLeftToUpdate;
+  setTimeout(function () {
+    updateTitle();
+  }, timeLeftToUpdate);
+}
 
 function onInputThing() {
   let myText = document.getElementById("myText");
