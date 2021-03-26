@@ -5,6 +5,8 @@ setTimeout(function () {
   input = myText.value;
 }, 100);
 
+let titleUpdate = false;
+
 function update() {
   var d = new Date();
   var n = d.getTime();
@@ -37,6 +39,11 @@ function update() {
       (-1 * ((n - countdownTimeInt) / 60000)).toFixed(3) + " in minutes";
     document.getElementById("hourBox").innerHTML =
       (-1 * ((n - countdownTimeInt) / 60000 / 60)).toFixed(3) + " in hours";
+
+    if (!titleUpdate) {
+      console.log("Run");
+      updateTitle();
+    }
   } else {
     textBox.innerHTML = "Please input time";
     minuteBox.innerHTML = "";
@@ -53,12 +60,15 @@ window.requestAnimationFrame(update);
 function updateTitle() {
   var d = new Date();
   var n = d.getTime();
+  titleUpdate = true;
 
   if (-1 * ((n - countdownTimeInt) / 60000) > 0) {
     document.title =
       (-1 * ((n - countdownTimeInt) / 60000)).toFixed(1) + " minutes";
   } else {
     document.title = "Countdown";
+    console.log("False");
+    titleUpdate = false;
   }
 
   let timeLeftToUpdate =
@@ -66,9 +76,16 @@ function updateTitle() {
     (-1 * ((n - countdownTimeInt) / 60000)).toFixed(1) * 60000;
 
   if (timeLeftToUpdate < 0) timeLeftToUpdate = 6000 - timeLeftToUpdate;
-  setTimeout(function () {
-    updateTitle();
-  }, timeLeftToUpdate);
+
+  timeLeftToUpdate = -timeLeftToUpdate + 12000;
+
+  console.log(timeLeftToUpdate);
+
+  if (titleUpdate) {
+    setTimeout(function () {
+      updateTitle();
+    }, timeLeftToUpdate);
+  }
 }
 
 function onInputThing() {
