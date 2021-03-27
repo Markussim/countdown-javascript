@@ -79,7 +79,7 @@ function updateTitle() {
 
   timeLeftToUpdate = -timeLeftToUpdate + 12000;
 
-  if (timeLeftToUpdate > 8000)
+  if (timeLeftToUpdate > 6000)
     timeLeftToUpdate = (timeLeftToUpdate - 6000) / 2 + 6000;
 
   console.log(timeLeftToUpdate);
