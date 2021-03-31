@@ -81,7 +81,7 @@ function updateTitle() {
 
   if (timeLeftToUpdate == 0) timeLeftToUpdate = 6000;
 
-  console.log(timeLeftToUpdate.toFixed(0));
+  console.log(parseInt(timeLeftToUpdate.toFixed(0)));
 
   if (titleUpdate) {
     setTimeout(function () {
