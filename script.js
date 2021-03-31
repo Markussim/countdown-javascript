@@ -74,13 +74,12 @@ function updateTitle() {
     (-1 * ((n - countdownTimeInt) / 60000)).toFixed(1) * 60000;
 
   if (timeLeftToUpdate < 0) {
-    timeLeftToUpdate = 6000 - timeLeftToUpdate;
+    timeLeftToUpdate *= -1;
+    timeLeftToUpdate = 3000 - timeLeftToUpdate;
+    timeLeftToUpdate += 3000;
   }
 
-  timeLeftToUpdate = -timeLeftToUpdate + 12000;
-
-  if (timeLeftToUpdate > 6000)
-    timeLeftToUpdate = (timeLeftToUpdate - 6000) / 2 + 6000;
+  if (timeLeftToUpdate == 0) timeLeftToUpdate = 6000;
 
   console.log(timeLeftToUpdate);
 
