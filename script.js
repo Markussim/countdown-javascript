@@ -79,7 +79,6 @@ function updateTitle() {
     timeLeftToUpdate += 3000;
   }
 
-  console.log(timeLeftToUpdate + " No check");
   if (timeLeftToUpdate <= 500) timeLeftToUpdate += 6000;
 
   console.log(parseInt(timeLeftToUpdate.toFixed(0)));
