@@ -24,12 +24,17 @@ function update() {
     Number(inputUpdate.toString().substr(inputUpdate.toString().length - 2)) <=
       59
   ) {
-    if (-1 * ((n - countdownTimeInt) / 1000) < 0) {
+    localStorage.setItem("date", Date.now() + -1 * (n - countdownTimeInt));
+    let isPassed = localStorage.getItem("date") < Date.now();
+    console.log(isPassed);
+    if (isPassed) {
       localStorage.removeItem("time");
+      localStorage.removeItem("date");
       console.log("countdownTimeInt");
       document.getElementById("myText").value = "";
       onInputThing();
     }
+
     myText.className = "transparent";
     myText.disabled = true;
     localStorage.setItem("time", inputUpdate);
